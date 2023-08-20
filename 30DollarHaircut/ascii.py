@@ -7,6 +7,7 @@ import time
 WIDTH = 16
 HEIGHT = 9
 ASCII_CHARS = "#* "
+FRAMERATE = 15 ## Actually Framerate /2
 
 # Convert an RGB image to grayscale
 def rgb_to_gray(image):
@@ -43,14 +44,14 @@ while cap.isOpened():
         break
     
 
-    if count % 15 == 0:
+    if count % FRAMERATE == 0:
         gray_frame = rgb_to_gray(frame)
         resized_frame = resize_image(gray_frame, WIDTH, HEIGHT)
         ascii_frame = image_to_ascii(resized_frame)
 
         Frame_to_ThirtyDollar = ''
 
-        with open(f'files/Frame{(int(count/12))}.🗿', 'a') as f:
+        with open(f'files/Frame{(int(count/FRAMERATE))}.🗿', 'a') as f:
 
             for i in ascii_frame:
                 if i == '#':
